@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-Nue9mEx4PsA3F7AS27q8yWX361VOIcxQ4ReTlVirmIU='; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Compare your supplied records</title><style>
+:root{color-scheme:light;font:16px system-ui,sans-serif;color:#172d33;background:#f5f4ee}
+body{max-width:1200px;margin:auto;padding:32px}h1{font-size:2rem}label{display:block;margin:12px 0}
+input,select,button{font:inherit;padding:10px;border:1px solid #52696f;border-radius:5px;background:white}
+input{width:min(90%,500px)}table{width:100%;border-collapse:collapse;background:white}
+th,td{border:1px solid #bcc6c8;padding:12px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+th{background:#173d46;color:white}.missing{font-style:italic;color:#5a4a40}.scroll{overflow:auto}
+.context{padding:16px;border-left:4px solid #17746c;background:#e7eeea}small{overflow-wrap:anywhere}
+@media print{.controls{display:none}body{padding:0;background:white}th{color:black;background:white}}
+</style></head><body>
+<h1>Compare your supplied records</h1><p class="context">Working copy of supplied records. This tool preserves what the records say; it does not confirm the listed information. Missing information stays visible.</p>
+<div class="controls"><label for="search">Find a word in the supplied records</label><input id="search" type="search" autocomplete="off">
+<label for="sort">Sort records</label><select id="sort"><option value="">Original source order</option><option value="0">record_id</option><option value="1">resource</option><option value="2">contact</option><option value="3">access</option><option value="4">eligibility</option><option value="5">fee</option></select>
+<button id="print" type="button">Print this view</button></div>
+<p id="count" aria-live="polite"></p><div class="scroll"><table><thead><tr><th scope="col">record_id</th><th scope="col">resource</th><th scope="col">contact</th><th scope="col">access</th><th scope="col">eligibility</th><th scope="col">fee</th></tr></thead><tbody></tbody></table></div>
+<noscript>Enable JavaScript to use this comparison view. The unmodified source records are included in the handover package.</noscript>
+<p><small>Source SHA-256: daa8b71fc1dcb6285e7fb7864b40f3bc7ddfc608d962a64448c29a08b47d7def. Compare with source.json and manifest.json in the handover.</small></p>
+<script id="source-data" type="application/json">[{"record_id": "SYNTHETIC-001", "resource": "Example Community Desk", "contact": "desk@example.invalid", "access": "Phone and in-person", "eligibility": "Residents of the example district", "fee": "No fee stated"}, {"record_id": "SYNTHETIC-002", "resource": "Example Records Helper", "contact": "records@example.invalid", "access": "Email", "eligibility": null}, {"record_id": "SYNTHETIC-003", "resource": "Example Access Support", "contact": "", "access": "By appointment", "eligibility": "Not stated in the supplied record", "fee": ""}]</script>
+<script id="column-data" type="application/json">["record_id", "resource", "contact", "access", "eligibility", "fee"]</script>
+<script>"use strict";
+const source = JSON.parse(document.getElementById("source-data").textContent);
+const columns = JSON.parse(document.getElementById("column-data").textContent);
+const body = document.querySelector("tbody");
+const search = document.getElementById("search");
+const sort = document.getElementById("sort");
+const count = document.getElementById("count");
+const valueAt = (row, key) => Object.prototype.hasOwnProperty.call(row, key) ? row[key] : undefined;
+function render() {
+  const needle = search.value.toLocaleLowerCase();
+  let rows = source.filter(row => columns.some(key => String(valueAt(row, key) ?? "").toLocaleLowerCase().includes(needle)));
+  if (sort.value !== "") {
+    const key = columns[Number(sort.value)];
+    rows = rows.slice().sort((a, b) => String(valueAt(a, key) ?? "").localeCompare(String(valueAt(b, key) ?? "")));
+  }
+  body.replaceChildren();
+  for (const row of rows) {
+    const tr = document.createElement("tr");
+    for (const key of columns) {
+      const td = document.createElement("td");
+      const value = valueAt(row, key);
+      td.textContent = value === undefined || value === null || value === "" ? "Not provided" : value;
+      if (value === undefined || value === null || value === "") td.className = "missing";
+      tr.append(td);
+    }
+    body.append(tr);
+  }
+  count.textContent = `${rows.length} of ${source.length} records shown`;
+}
+search.addEventListener("input", render);
+sort.addEventListener("change", render);
+document.getElementById("print").addEventListener("click", () => window.print());
+render();</script></body></html>

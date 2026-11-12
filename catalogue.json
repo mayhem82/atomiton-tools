@@ -1,0 +1,96 @@
+{
+  "catalogue_version": "0.1.0",
+  "title": "The Atomiton · Public Tool Library",
+  "repository_url": "https://github.com/mayhem82/atomiton-tools",
+  "site_url": "https://mayhem82.github.io/atomiton-tools/",
+  "eligibility_rule": "The listed function must have a usable verified no-payment path. Paywalled functions do not qualify.",
+  "tools": [
+    {
+      "id": "offline-record-comparator",
+      "name": "Offline Record Comparator",
+      "version": "0.1.0",
+      "summary": "Turn supplied records into a searchable, sortable and printable comparison view. Keep missing information visible.",
+      "origin": "created",
+      "origin_label": "Built through Atomiton research",
+      "function": "Compare all rows and fields supplied in a flat JSON dataset, without changing its contents.",
+      "audience": "People already comparing records while navigating a system, and researchers working alongside them.",
+      "research_gap": "The supplied records had no mission-specific comparison view. Null, empty and absent fields needed to remain visible.",
+      "tags": [
+        "comparison",
+        "offline",
+        "records",
+        "research",
+        "print"
+      ],
+      "readiness": "Downloadable prototype",
+      "licence": "MIT",
+      "source_url": "https://github.com/mayhem82/atomiton-tools/tree/main/tools/offline-record-comparator",
+      "licence_url": "https://github.com/mayhem82/atomiton-tools/blob/main/tools/offline-record-comparator/LICENSE",
+      "free_access": {
+        "payment_required": false,
+        "verified": true,
+        "path": "Open the bundled HTML in a browser. To use new records, run the included standard-library Python compiler.",
+        "accounts": [],
+        "paid_dependencies": [],
+        "limits": [
+          "2–500 flat records; 2–30 fields; strings or null; up to 512 KB.",
+          "Creating a new dataset view requires Python 3.11+. The supplied example opens directly in a browser."
+        ],
+        "evidence": [
+          "evidence/comparator-javascript-tests.tap",
+          "evidence/comparator-document-verification.json",
+          "evidence/comparator-standalone-rebuild.json"
+        ]
+      },
+      "usage_evidence": [],
+      "test_results": [
+        {
+          "kind": "automated_test",
+          "conducted_by": "Atomiton development checks",
+          "outcome": "passed",
+          "scope": "Search, sorting, source-order restoration, missing fields, hostile strings, inherited property names, print-handler dispatch and script CSP.",
+          "environment": "Node.js VM with a DOM fixture; synthetic records. This is not a full browser or user trial.",
+          "report": "evidence/comparator-javascript-tests.tap",
+          "passed": 3,
+          "failed": 0,
+          "tool_version": "0.1.0",
+          "recorded_on": "2026-11-13"
+        },
+        {
+          "kind": "automated_test",
+          "conducted_by": "Atomiton deterministic document checker",
+          "outcome": "passed",
+          "scope": "All source rows and fields preserved; admitted script, document policy and source digest checked.",
+          "environment": "Python standard-library document checks on three synthetic records.",
+          "report": "evidence/comparator-document-verification.json",
+          "tool_version": "0.1.0",
+          "recorded_on": "2026-11-13"
+        },
+        {
+          "kind": "rebuild_check",
+          "conducted_by": "Public-library build check",
+          "outcome": "passed",
+          "scope": "The standalone compiler recreates the shipped HTML byte for byte without importing Atomiton.",
+          "environment": "Python standard library; supplied synthetic records.",
+          "report": "evidence/comparator-standalone-rebuild.json",
+          "tool_version": "0.1.0",
+          "recorded_on": "2026-11-13"
+        }
+      ],
+      "trial_results": [],
+      "limitations": [
+        "No real-person field trial has been performed.",
+        "The tool organises what supplied records say; it does not establish eligibility, current availability or a remedy.",
+        "Missing information remains unknown. The comparison gap is partly addressed under the declared technical checks."
+      ],
+      "adoption_steps": [
+        "Download and unzip the complete tool bundle.",
+        "Open comparison.html for the synthetic working example.",
+        "Read GUIDE.txt and inspect the test reports and source.",
+        "For your own records, run: python compiler.py your-records.json --out your-comparison.html",
+        "Keep the original records and report trial outcomes with the exact tool version."
+      ],
+      "launch_path": "tools/offline-record-comparator/comparison.html"
+    }
+  ]
+}

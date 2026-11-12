@@ -1,0 +1,25 @@
+[
+  {
+    "record_id": "SYNTHETIC-001",
+    "resource": "Example Community Desk",
+    "contact": "desk@example.invalid",
+    "access": "Phone and in-person",
+    "eligibility": "Residents of the example district",
+    "fee": "No fee stated"
+  },
+  {
+    "record_id": "SYNTHETIC-002",
+    "resource": "Example Records Helper",
+    "contact": "records@example.invalid",
+    "access": "Email",
+    "eligibility": null
+  },
+  {
+    "record_id": "SYNTHETIC-003",
+    "resource": "Example Access Support",
+    "contact": "",
+    "access": "By appointment",
+    "eligibility": "Not stated in the supplied record",
+    "fee": ""
+  }
+]

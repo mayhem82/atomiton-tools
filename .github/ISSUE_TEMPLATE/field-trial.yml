@@ -1,0 +1,31 @@
+name: Tool field trial
+description: Record actual use, including failed or mixed results.
+title: '[Trial] '
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Tool and exact version
+    validations:
+      required: true
+  - type: textarea
+    id: task
+    attributes:
+      label: Task, setting and procedure
+      description: Describe the practical task, relevant environment, who conducted the trial and when.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Actual outcome and supporting evidence
+      description: Describe what worked, failed or remained unresolved. Separate observed effects from expectations.
+    validations:
+      required: true
+  - type: textarea
+    id: independence
+    attributes:
+      label: Adoption, continued use and limitations
+      description: Can others operate it independently? What setup, support, ongoing costs or limitations remain?
+    validations:
+      required: true

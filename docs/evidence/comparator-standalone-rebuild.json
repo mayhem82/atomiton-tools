@@ -1,0 +1,12 @@
+{
+  "actual_html_sha256": "ab455dd5df4ae84921e2a1201667c0b9e09308226de9fbdc9eedd8ac259b4fd1",
+  "atomiton_import_required": false,
+  "compiler_sha256": "037e78d0fc12332c991f0ec3d2288e86c1189377b791627a941052215bb74a0d",
+  "data_scope": "synthetic",
+  "expected_html_sha256": "ab455dd5df4ae84921e2a1201667c0b9e09308226de9fbdc9eedd8ac259b4fd1",
+  "field_trial": false,
+  "passed": true,
+  "procedure": "Isolated Python standard-library invocation of compiler.py on the bundled synthetic source; compare output bytes.",
+  "recorded_for_tool_version": "0.1.0",
+  "source_sha256": "daa8b71fc1dcb6285e7fb7864b40f3bc7ddfc608d962a64448c29a08b47d7def"
+}

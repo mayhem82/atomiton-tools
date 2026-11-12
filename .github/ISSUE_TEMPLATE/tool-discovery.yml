@@ -1,0 +1,32 @@
+name: Free tool discovery
+description: A tool found or built during research, including an existing tool used by others.
+title: '[Discovery] '
+body:
+  - type: textarea
+    id: tool
+    attributes:
+      label: Tool, original source and version
+      description: Link the original provider/repository and licence. Say whether it already exists, was adapted, or was newly built.
+    validations:
+      required: true
+  - type: textarea
+    id: function
+    attributes:
+      label: Research gap and listed function
+      description: Explain the problem it helps with and who can use it, including internal research use.
+    validations:
+      required: true
+  - type: textarea
+    id: free
+    attributes:
+      label: Verified free path
+      description: Give the actual no-payment steps, required accounts, dependencies and limits. A paywalled function does not qualify.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Use, test or trial evidence
+      description: Link actual evidence, who produced it, the tested version and conditions. Identify untested claims and anything still unknown.
+    validations:
+      required: true

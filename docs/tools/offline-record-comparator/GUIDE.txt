@@ -1,0 +1,14 @@
+THE ATOMITON — COMPARISON WORKING TOOL
+
+Compare your supplied records
+
+1. Open comparison.html in a modern browser. It works offline.
+2. Search to find words across the supplied records. Clear search to see every record.
+3. Choose a field to sort, or restore original source order.
+4. Print the current view if useful.
+5. Check source.json for the original supplied records.
+
+Not provided means absent, null, or empty in the supplied records. It does not mean a service is unavailable.
+This instrument organises supplied information. It does not establish eligibility, current availability, or any broader finding.
+Keep your existing records. The tool does not edit them or contact anyone.
+Review manifest.json and evidence/ for checks, lineage, and unresolved gaps.
